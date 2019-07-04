@@ -1,0 +1,4 @@
+steps:
+  - script: |
+      env
+    displayName: 'Print environment variables'
