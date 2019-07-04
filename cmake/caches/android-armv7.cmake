@@ -14,7 +14,7 @@ if(CMAKE_HOST_SYSTEM_NAME STREQUAL Windows)
     message(FATAL_ERROR "unable to find android NDK")
   endif()
 else()
-  message(FATAL_ERROR "${CMAKE_HOST_SYSTEM_NAME} is unsupported")
+# CMAKE_ANDROID_NDK is set from env var / pipeline variable ANDROID_NDK
 endif()
 
 set(CMAKE_ANDROID_NDK_TOOLCHAIN_VERSION clang CACHE STRING "")

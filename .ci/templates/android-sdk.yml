@@ -6,6 +6,7 @@
 jobs:
   - job: android_${{ parameters.host }}
     variables:
+      ANDROID_NDK: "" # Sets CMAKE_ANDROID_NDK so should be set in Azure
       toolchain.directory: $(System.ArtifactsDirectory)/toolchain/Developer/Toolchains/unknown-Asserts-development.xctoolchain
       curl.directory: $(System.ArtifactsDirectory)/curl-android-${{ parameters.host }}/libcurl-development
       icu.version: 64
