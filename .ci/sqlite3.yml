@@ -25,3 +25,11 @@ jobs:
       host: x64
     steps:
       - template: templates/sqlite3.yml
+
+  - job: linux_x64
+    variables:
+      arch: x86_64
+      host: x64
+      platform: linux
+    steps:
+      - template: templates/sqlite3.yml
