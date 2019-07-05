@@ -1,19 +1,19 @@
-name: 'Android Swift SDK'
+name: Android Swift SDK
 jobs:
   - template: templates/android-sdk.yml
     parameters:
-      arch: 'armv7'
-      host: 'arm'
-      triple: 'armv7-unknown-linux-androideabi'
+      arch: armv7
+      host: arm
+      triple: armv7-unknown-linux-androideabi
 
   - template: templates/android-sdk.yml
     parameters:
-      arch: 'aarch64'
-      host: 'arm64'
-      triple: 'aarch64-unknown-linux-android'
+      arch: aarch64
+      host: arm64
+      triple: aarch64-unknown-linux-android
 
   - template: templates/android-sdk.yml
     parameters:
-      arch: 'x86_64'
-      host: 'x64'
-      triple: 'x86_64-unknown-linux-android'
+      arch: x86_64
+      host: x64
+      triple: x86_64-unknown-linux-android
