@@ -46,7 +46,7 @@ jobs:
           buildType: specific
           project: 'swift-android'
           allowPartiallySucceededBuilds: true
-          pipeline: 9
+          pipeline: "ICU"
           artifactName: 'icu-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
           parallelizationLimit: 8
@@ -55,7 +55,7 @@ jobs:
         inputs:
           buildType: specific
           project: 'swift-android'
-          pipeline: 10
+          pipeline: "XML2"
           allowPartiallySucceededBuilds: true
           artifactName: 'xml2-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
@@ -65,7 +65,7 @@ jobs:
         inputs:
           buildType: specific
           project: 'swift-android'
-          pipeline: 11
+          pipeline: "CURL"
           allowPartiallySucceededBuilds: true
           artifactName: 'curl-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
