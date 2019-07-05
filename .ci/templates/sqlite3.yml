@@ -1,6 +1,6 @@
 steps:
   - script: |
-      curl https://sqlite.org/2019/sqlite-amalgamation-$(sqlite.release).zip -o $(Build.SourcesDirectory)\sqlite-amalgamation-$(sqlite.release).zip
+      curl -O https://sqlite.org/2019/sqlite-amalgamation-$(sqlite.release).zip
     displayName: 'Download Sources'
   - task: ExtractFiles@1
     inputs:
