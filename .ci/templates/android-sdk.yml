@@ -81,9 +81,9 @@ jobs:
       #     echo "##vso[task.setvariable variable=PATH]$(toolchain.directory)/usr/bin;%PATH%"
       #   condition: eq( variables['Agent.OS'], 'Windows_NT' )
       #   displayName: 'Update PATH'
-      - task: UsePythonVersion@0
-        inputs:
-          versionSpec: '2.7.x'
+      # - task: UsePythonVersion@0
+      #   inputs:
+      #     versionSpec: '2.7.x'
       - task: CMake@1
         inputs:
           workingDirectory: $(Build.StagingDirectory)/llvm
