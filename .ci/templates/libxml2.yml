@@ -19,4 +19,3 @@ steps:
     inputs:
       pathtoPublish: $(Build.StagingDirectory)/Library
       artifactName: xml2-$(platform)-$(host)
-
