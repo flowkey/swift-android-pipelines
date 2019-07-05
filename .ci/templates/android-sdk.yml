@@ -31,41 +31,45 @@ jobs:
           git clone --quiet --depth 1 --single-branch https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
         displayName: 'Fetch Sources'
       - task: DownloadBuildArtifacts@0
+        displayName: 'Install toolchain'
         inputs:
           buildType: specific
-          project: '3133d6ab-80a8-4996-ac4f-03df25cd3224'
+          project: 'swift-android'
+          pipeline: "Linux Toolchain x86_64"
           allowPartiallySucceededBuilds: true
-          pipeline: 1
           artifactName: 'toolchain'
           downloadPath: '$(System.ArtifactsDirectory)'
-        displayName: 'Install toolchain'
+          parallelizationLimit: 8
       - task: DownloadBuildArtifacts@0
+        displayName: 'Install ICU'
         inputs:
           buildType: specific
-          project: '3133d6ab-80a8-4996-ac4f-03df25cd3224'
+          project: 'swift-android'
           allowPartiallySucceededBuilds: true
           pipeline: 9
           artifactName: 'icu-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
-        displayName: 'Install ICU'
+          parallelizationLimit: 8
       - task: DownloadBuildArtifacts@0
+        displayName: 'Install XML2'
         inputs:
           buildType: specific
-          project: '3133d6ab-80a8-4996-ac4f-03df25cd3224'
+          project: 'swift-android'
           pipeline: 10
           allowPartiallySucceededBuilds: true
           artifactName: 'xml2-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
-        displayName: 'Install XML2'
+          parallelizationLimit: 8
       - task: DownloadBuildArtifacts@0
+        displayName: 'Install CURL'
         inputs:
           buildType: specific
-          project: '3133d6ab-80a8-4996-ac4f-03df25cd3224'
+          project: 'swift-android'
           pipeline: 11
           allowPartiallySucceededBuilds: true
           artifactName: 'curl-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
-        displayName: 'Install CURL'
+          parallelizationLimit: 8
       # - task: BatchScript@1
       #   inputs:
       #     filename: C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/Tools/VsDevCmd.bat
