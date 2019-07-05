@@ -9,7 +9,7 @@ jobs:
       toolchain.directory: $(System.ArtifactsDirectory)/toolchain/Developer/Toolchains/unknown-Asserts-development.xctoolchain
       curl.directory: $(System.ArtifactsDirectory)/curl-android-${{ parameters.host }}/libcurl-development
       icu.version: 64
-      icu.directory: $(System.ArtifactsDirectory)/icu-android-${{ parameters.host }}/ICU-$(icu.version)
+      icu.directory: $(System.ArtifactsDirectory)/icu-android-${{ parameters.host }}/icu-$(icu.version)
       xml2.directory: $(System.ArtifactsDirectory)/xml2-android-${{ parameters.host }}/libxml2-development
       install.directory: $(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/SDKs/Android.sdk/usr
       xctest.install.directory: $(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/Library/XCTest-development/usr
