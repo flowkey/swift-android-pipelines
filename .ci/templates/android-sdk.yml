@@ -86,6 +86,10 @@ jobs:
       #     versionSpec: '2.7.x'
       - script: chmod +x $(toolchain.directory)/usr/bin/*
         displayName: Make toolchain executable
+      # XXX (ephemer) The following seems to only be needed for the dispatch build.
+      # Can't we set the CMAKE_SWIFT_COMPILER paths there instead?
+      - script: export PATH="$(toolchain.directory)/usr/bin/:$PATH"
+        displayName: Add toolchain to PATH
       - task: CMake@1
         inputs:
           workingDirectory: $(Build.StagingDirectory)/llvm
