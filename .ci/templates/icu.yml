@@ -1,6 +1,6 @@
 steps:
   - script: |
-      git clone --quiet --depth 1 --single-branch --branch $(icu.release) https://github.com/unicode-org/icu.git
+      git clone --depth 1 --single-branch --branch $(icu.release) https://github.com/unicode-org/icu.git
     displayName: 'Fetch Sources'
   - task: CopyFiles@2
     inputs:
