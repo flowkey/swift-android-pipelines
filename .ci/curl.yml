@@ -1,13 +1,14 @@
 name: curl
+variables:
+  platform: android
+  curl.version: development
+  curl.release: master
+  install.directory: $(Build.StagingDirectory)/Library/libcurl-$(curl.version)
 jobs:
   - job: android_armv7
     variables:
       arch: armv7
       host: arm
-      platform: android
-      curl.version: development
-      install.directory: $(Build.StagingDirectory)/Library/libcurl-$(curl.version)
-      curl.release: master
     steps:
       - template: templates/curl.yml
 
@@ -15,10 +16,6 @@ jobs:
     variables:
       arch: aarch64
       host: arm64
-      platform: android
-      curl.version: development
-      install.directory: $(Build.StagingDirectory)/Library/libcurl-$(curl.version)
-      curl.release: master
     steps:
       - template: templates/curl.yml
 
@@ -26,10 +23,6 @@ jobs:
     variables:
       arch: x86_64
       host: x64
-      platform: android
-      curl.version: development
-      install.directory: $(Build.StagingDirectory)/Library/libcurl-$(curl.version)
-      curl.release: master
     steps:
       - template: templates/curl.yml
 
@@ -38,8 +31,5 @@ jobs:
       arch: x86_64
       host: x64
       platform: linux
-      curl.version: development
-      install.directory: $(Build.StagingDirectory)/Library/libcurl-$(curl.version)
-      curl.release: master
     steps:
     - template: templates/curl.yml

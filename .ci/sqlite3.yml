@@ -2,13 +2,13 @@ name: sqlite
 variables:
   sqlite.version: 3.28.0
   sqlite.release: 3280000
+  platform: android
+  install.directory: $(Build.StagingDirectory)/Library/sqlite-$(sqlite.version)
 jobs:
   - job: android_armv7
     variables:
       arch: armv7
       host: arm
-      platform: android
-      install.directory: $(Build.StagingDirectory)/Library/sqlite-$(sqlite.version)
     steps:
       - template: templates/sqlite3.yml
 
@@ -16,8 +16,6 @@ jobs:
     variables:
       arch: aarch64
       host: arm64
-      platform: android
-      install.directory: $(Build.StagingDirectory)/Library/sqlite-$(sqlite.version)
     steps:
       - template: templates/sqlite3.yml
 
@@ -25,7 +23,5 @@ jobs:
     variables:
       arch: x86_64
       host: x64
-      platform: android
-      install.directory: $(Build.StagingDirectory)/Library/sqlite-$(sqlite.version)
     steps:
       - template: templates/sqlite3.yml
