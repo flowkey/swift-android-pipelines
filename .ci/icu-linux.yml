@@ -1,15 +1,15 @@
 name: icu
+variables:
+  icu.version: 64
+  install.directory: $(Build.StagingDirectory)/Library/icu-$(icu.version)
+  icu.release: maint/maint-$(icu.version)
+  icu.build_tools: false
+  platform: android
 jobs:
   - job: android_armv7
     variables:
       arch: armv7
       host: arm
-      platform: android
-
-      icu.version: 64
-      install.directory: $(Build.StagingDirectory)/Library/icu-$(icu.version)
-      icu.release: maint/maint-$(icu.version)
-      icu.build_tools: false
     steps:
       - template: templates/icu.yml
 
@@ -17,12 +17,6 @@ jobs:
     variables:
       arch: aarch64
       host: arm64
-      platform: android
-
-      icu.version: 64
-      install.directory: $(Build.StagingDirectory)/Library/icu-$(icu.version)
-      icu.release: maint/maint-$(icu.version)
-      icu.build_tools: false
     steps:
       - template: templates/icu.yml
 
@@ -30,12 +24,6 @@ jobs:
     variables:
       arch: x86_64
       host: x64
-      platform: android
-
-      icu.version: 64
-      install.directory: $(Build.StagingDirectory)/Library/icu-$(icu.version)
-      icu.release: maint/maint-$(icu.version)
-      icu.build_tools: false
     steps:
       - template: templates/icu.yml
 
@@ -44,10 +32,6 @@ jobs:
       arch: x86_64
       host: x64
       platform: linux
-
-      icu.version: 64
-      install.directory: $(Build.StagingDirectory)/Library/icu-$(icu.version)
-      icu.release: maint/maint-$(icu.version)
       icu.build_tools: true
     steps:
       - template: templates/icu.yml
