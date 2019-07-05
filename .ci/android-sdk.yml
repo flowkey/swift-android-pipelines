@@ -1,4 +1,4 @@
-name: 'android SDK'
+name: 'Android Swift SDK'
 jobs:
   - template: templates/android-sdk.yml
     parameters:
