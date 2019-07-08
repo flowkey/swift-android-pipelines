@@ -124,7 +124,7 @@ jobs:
         displayName: 'Configure libdispatch'
         inputs:
           workingDirectory: $(Build.StagingDirectory)/libdispatch
-          cmakeArgs: -G Ninja -DCMAKE_TOOLCHAIN_FILE=$(ANDROID_NDK)/build/cmake/android.toolchain.cmake -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake $(Build.SourcesDirectory)/swift-corelibs-libdispatch -DSWIFT_ANDROID_SDK=$(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/SDKs/Android.sdk -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}-swift-flags.cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_SWIFT_COMPILER=$(toolchain.directory)/usr/bin/swiftc -DCMAKE_INSTALL_PREFIX=$(install.directory) -DENABLE_TESTING=NO -DENABLE_SWIFT=YES
+          cmakeArgs: -G Ninja -DCMAKE_TOOLCHAIN_FILE=$(ANDROID_NDK)/build/cmake/android.toolchain.cmake -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake $(Build.SourcesDirectory)/swift-corelibs-libdispatch -DSWIFT_ANDROID_SDK=$(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/SDKs/Android.sdk -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}-swift-flags.cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_SWIFT_COMPILER=$(toolchain.directory)/usr/bin/swiftc -DCMAKE_C_COMPILER=$(toolchain.directory)/usr/bin/clang -DCMAKE_CXX_COMPILER=$(toolchain.directory)/usr/bin/clang++ -DCMAKE_INSTALL_PREFIX=$(install.directory) -DENABLE_TESTING=NO -DENABLE_SWIFT=YES
       - task: CMake@1
         displayName: 'Build libdispatch'
         inputs:
