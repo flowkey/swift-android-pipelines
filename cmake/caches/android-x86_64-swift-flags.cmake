@@ -10,3 +10,6 @@
 #       -Xclang-linker --sysroot=${ANDROID_NDK}/platforms/${ANDROID_PLATFORM}/arch-${ANDROID_SYSROOT_ABI}
 #       -Xclang-linker -fuse-ld=gold
 #     CACHE STRING "")
+
+set(CMAKE_C_COMPILER_TARGET x86_64-unknown-linux-android CACHE STRING "")
+set(USE_GOLD_LINKER TRUE CACHE STRING "")
