@@ -14,8 +14,7 @@ jobs:
       install.directory: $(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/SDKs/Android.sdk/usr
       xctest.install.directory: $(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/Library/XCTest-development/usr
     steps:
-      - displayName: 'Fetch Sources'
-        script: |
+      - script: |
           set -e
 
           git config --global user.name 'builder'
@@ -46,6 +45,7 @@ jobs:
           git -C swift-corelibs-foundation cherry-pick FETCH_HEAD
 
           cloneOrClean https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
+        displayName: 'Fetch Sources'
       - task: DownloadBuildArtifacts@0
         displayName: 'Install toolchain'
         inputs:
@@ -100,15 +100,15 @@ jobs:
       # - task: UsePythonVersion@0
       #   inputs:
       #     versionSpec: '2.7.x'
-      - displayName: Make toolchain executable
-        script: chmod +x $(toolchain.directory)/usr/bin/*
-      - displayName: 'Configure LLVM'
-        task: CMake@1
+      - script: chmod +x $(toolchain.directory)/usr/bin/*
+        displayName: Make toolchain executable
+      - task: CMake@1
+        displayName: 'Configure LLVM'
         inputs:
           workingDirectory: $(Build.StagingDirectory)/llvm
           cmakeArgs: -G Ninja -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake $(Build.SourcesDirectory)/llvm -DCMAKE_BUILD_TYPE=Release -DLLVM_HOST_TRIPLE=${{ parameters.triple }}
-      - displayName: 'Configure Swift standard library'
-        task: CMake@1
+      - task: CMake@1
+        displayName: 'Configure Swift standard library'
         inputs:
           workingDirectory: $(Build.StagingDirectory)/swift-stdlib
           cmakeArgs: -G Ninja -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake -C $(Build.SourcesDirectory)/cmake/caches/swift-stdlib-android-${{ parameters.arch }}.cmake $(Build.SourcesDirectory)/swift -DCMAKE_BUILD_TYPE=Release -DLLVM_DIR=$(Build.StagingDirectory)/llvm/lib/cmake/llvm -DSWIFT_NATIVE_SWIFT_TOOLS_PATH=$(toolchain.directory)/usr/bin -DCMAKE_INSTALL_PREFIX=$(install.directory) -DSWIFT_ANDROID_${{ parameters.arch }}_ICU_UC_INCLUDE=$(icu.directory)/usr/include/unicode -DSWIFT_ANDROID_${{ parameters.arch }}_ICU_UC=$(icu.directory)/usr/lib/libicuuc$(icu.version).so -DSWIFT_ANDROID_${{ parameters.arch }}_ICU_I18N_INCLUDE=$(icu.directory)/usr/include -DSWIFT_ANDROID_${{ parameters.arch }}_ICU_I18N=$(icu.directory)/usr/lib/libicuin$(icu.version).so
