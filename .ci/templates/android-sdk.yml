@@ -15,20 +15,36 @@ jobs:
       xctest.install.directory: $(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/Library/XCTest-development/usr
     steps:
       - script: |
+          set -e
+
           git config --global user.name 'builder'
           git config --global user.email 'builder@compnerd.org'
 
-          git clone --depth 1 --single-branch https://github.com/apple/swift-llvm llvm
-          git clone --config core.autocrlf=false --config core.symlinks=true --depth 1 --single-branch https://github.com/apple/swift swift
+          function cloneOrClean() {
+            local readonly url=$1
+            local readonly directory=$2
+            shift 2
 
-          git clone --depth 1 --single-branch https://github.com/apple/swift-corelibs-libdispatch swift-corelibs-libdispatch
+            if [ ! -d "${directory}" ]; then
+              git clone --depth 1 --single-branch $@ ${url} ${directory}
+            else
+              local readonly CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+              git -C ${directory} clean -xdf
+              git -C ${directory} fetch origin ${CURRENT_BRANCH} --prune --depth=1
+              git -C ${directory} reset --hard origin/${CURRENT_BRANCH}
+            fi
+          }
 
-          git clone --depth 1 --single-branch https://github.com/apple/swift-corelibs-foundation swift-corelibs-foundation
+          cloneOrClean https://github.com/apple/swift-llvm llvm
+          cloneOrClean https://github.com/apple/swift swift --config core.autocrlf=false --config core.symlinks=true
+          cloneOrClean https://github.com/apple/swift-corelibs-libdispatch swift-corelibs-libdispatch
+          cloneOrClean https://github.com/apple/swift-corelibs-foundation swift-corelibs-foundation
+
           # PR2364
           git -C swift-corelibs-foundation fetch origin pull/2364/head
           git -C swift-corelibs-foundation cherry-pick FETCH_HEAD
 
-          git clone --depth 1 --single-branch https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
+          cloneOrClean https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
         displayName: 'Fetch Sources'
       - task: DownloadBuildArtifacts@0
         displayName: 'Install toolchain'
