@@ -39,12 +39,11 @@ jobs:
           cloneOrClean https://github.com/apple/swift swift --config core.autocrlf=false --config core.symlinks=true
           cloneOrClean https://github.com/apple/swift-corelibs-libdispatch swift-corelibs-libdispatch
           cloneOrClean https://github.com/apple/swift-corelibs-foundation swift-corelibs-foundation
+          cloneOrClean https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
 
-          # PR2364
+          # Apply PR2364
           git -C swift-corelibs-foundation fetch origin pull/2364/head
           git -C swift-corelibs-foundation cherry-pick FETCH_HEAD
-
-          cloneOrClean https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
         displayName: 'Fetch Sources'
       - task: DownloadBuildArtifacts@0
         displayName: 'Install toolchain'
