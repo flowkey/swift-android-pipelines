@@ -91,8 +91,7 @@ jobs:
             arguments: -no_logo -arch=x64 -host_arch=x64
             modifyEnvironment: true
           displayName: 'vsvarsall.bat'
-        - script: |
-            echo "##vso[task.setvariable variable=PATH]$(toolchain.directory)/usr/bin;%PATH%"
+        - script: echo "##vso[task.setvariable variable=PATH]$(toolchain.directory)/usr/bin;%PATH%"
           displayName: 'Update PATH'
         - task: UsePythonVersion@0
           inputs:
@@ -100,11 +99,11 @@ jobs:
       # </Windows build machines only>
 
       # <Linux build machines only>
-      - ${{ if eq( variables['Agent.OS'], 'Linux' ) }}:
-        - script: echo "##vso[task.setvariable variable=PATH]$(toolchain.directory)/usr/bin;$PATH"
-          displayName: 'Update PATH'
-        - script: chmod +x $(toolchain.directory)/usr/bin/*
-          displayName: Make toolchain executable
+      # - ${{ if eq(variables['Agent.OS'], 'Linux') }}:
+      - script: echo "##vso[task.setvariable variable=PATH]$(toolchain.directory)/usr/bin;$PATH"
+        displayName: 'Update PATH'
+      - script: chmod +x $(toolchain.directory)/usr/bin/*
+        displayName: Make toolchain executable
       # </Linux build machines only>
 
       - task: CMake@1
