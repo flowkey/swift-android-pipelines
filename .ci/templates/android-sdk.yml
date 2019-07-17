@@ -42,46 +42,46 @@ jobs:
           cloneOrClean https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
 
         displayName: 'Fetch Sources'
-      - task: DownloadBuildArtifacts@0
-        displayName: 'Install toolchain'
-        inputs:
-          buildType: specific
-          project: 'swift-android'
-          pipeline: "Linux Toolchain x86_64"
-          allowPartiallySucceededBuilds: true
-          artifactName: 'toolchain'
-          downloadPath: '$(System.ArtifactsDirectory)'
-          parallelizationLimit: 8
-      - task: DownloadBuildArtifacts@0
-        displayName: 'Install ICU'
-        inputs:
-          buildType: specific
-          project: 'swift-android'
-          allowPartiallySucceededBuilds: true
-          pipeline: "ICU"
-          artifactName: 'icu-android-${{ parameters.host }}'
-          downloadPath: '$(System.ArtifactsDirectory)'
-          parallelizationLimit: 8
-      - task: DownloadBuildArtifacts@0
-        displayName: 'Install XML2'
-        inputs:
-          buildType: specific
-          project: 'swift-android'
-          pipeline: "XML2"
-          allowPartiallySucceededBuilds: true
-          artifactName: 'xml2-android-${{ parameters.host }}'
-          downloadPath: '$(System.ArtifactsDirectory)'
-          parallelizationLimit: 8
-      - task: DownloadBuildArtifacts@0
-        displayName: 'Install CURL'
-        inputs:
-          buildType: specific
-          project: 'swift-android'
-          pipeline: "CURL"
-          allowPartiallySucceededBuilds: true
-          artifactName: 'curl-android-${{ parameters.host }}'
-          downloadPath: '$(System.ArtifactsDirectory)'
-          parallelizationLimit: 8
+      # - task: DownloadBuildArtifacts@0
+      #   displayName: 'Install toolchain'
+      #   inputs:
+      #     buildType: specific
+      #     project: 'swift-android'
+      #     pipeline: "Linux Toolchain x86_64"
+      #     allowPartiallySucceededBuilds: true
+      #     artifactName: 'toolchain'
+      #     downloadPath: '$(System.ArtifactsDirectory)'
+      #     parallelizationLimit: 8
+      # - task: DownloadBuildArtifacts@0
+      #   displayName: 'Install ICU'
+      #   inputs:
+      #     buildType: specific
+      #     project: 'swift-android'
+      #     allowPartiallySucceededBuilds: true
+      #     pipeline: "ICU"
+      #     artifactName: 'icu-android-${{ parameters.host }}'
+      #     downloadPath: '$(System.ArtifactsDirectory)'
+      #     parallelizationLimit: 8
+      # - task: DownloadBuildArtifacts@0
+      #   displayName: 'Install XML2'
+      #   inputs:
+      #     buildType: specific
+      #     project: 'swift-android'
+      #     pipeline: "XML2"
+      #     allowPartiallySucceededBuilds: true
+      #     artifactName: 'xml2-android-${{ parameters.host }}'
+      #     downloadPath: '$(System.ArtifactsDirectory)'
+      #     parallelizationLimit: 8
+      # - task: DownloadBuildArtifacts@0
+      #   displayName: 'Install CURL'
+      #   inputs:
+      #     buildType: specific
+      #     project: 'swift-android'
+      #     pipeline: "CURL"
+      #     allowPartiallySucceededBuilds: true
+      #     artifactName: 'curl-android-${{ parameters.host }}'
+      #     downloadPath: '$(System.ArtifactsDirectory)'
+      #     parallelizationLimit: 8
 
       # <Windows build machines only>
       - ${{ if eq( variables['Agent.OS'], 'Windows_NT' ) }}:
