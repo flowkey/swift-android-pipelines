@@ -51,7 +51,6 @@ jobs:
           allowPartiallySucceededBuilds: true
           artifactName: 'toolchain'
           downloadPath: '$(System.ArtifactsDirectory)'
-          parallelizationLimit: 8
       - task: DownloadBuildArtifacts@0
         displayName: 'Install ICU'
         inputs:
@@ -61,7 +60,6 @@ jobs:
           pipeline: "ICU"
           artifactName: 'icu-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
-          parallelizationLimit: 8
       - task: DownloadBuildArtifacts@0
         displayName: 'Install XML2'
         inputs:
@@ -71,7 +69,6 @@ jobs:
           allowPartiallySucceededBuilds: true
           artifactName: 'xml2-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
-          parallelizationLimit: 8
       - task: DownloadBuildArtifacts@0
         displayName: 'Install CURL'
         inputs:
@@ -81,7 +78,6 @@ jobs:
           allowPartiallySucceededBuilds: true
           artifactName: 'curl-android-${{ parameters.host }}'
           downloadPath: '$(System.ArtifactsDirectory)'
-          parallelizationLimit: 8
 
       # <Windows build machines only>
       - ${{ if eq( variables['Agent.OS'], 'Windows_NT' ) }}:
