@@ -12,19 +12,6 @@ set(SWIFT_BUILD_RUNTIME_WITH_HOST_COMPILER YES CACHE BOOL "")
 set(SWIFT_ANDROID_API_LEVEL 21 CACHE STRING "")
 set(SWIFT_ANDROID_NDK_GCC_VERSION 4.9 CACHE STRING "")
 
-if($ENV{SWIFT_ANDROID_NDK_PATH})
-  set(SWIFT_ANDROID_NDK_PATH $ENV{SWIFT_ANDROID_NDK_PATH} CACHE STRING "")
-elseif(CMAKE_HOST_SYSTEM_NAME STREQUAL Windows)
-  if(EXISTS C:/Microsoft/AndroidNDK64/android-ndk-r16b)
-    set(SWIFT_ANDROID_NDK_PATH "C:/Microsoft/AndroidNDK64/android-ndk-r16b" CACHE STRING "")
-  endif()
-endif()
-
-if(NOT DEFINED SWIFT_ANDROID_NDK_PATH)
-  message(FATAL_ERROR "Unable to find android NDK")
-endif()
-
-
 # TODO(compnerd) we should fix the lld.exe spelling
 # NOTE: The following values both get unset for aarch64
 set(SWIFT_ENABLE_LLD_LINKER FALSE CACHE BOOL "")

@@ -112,18 +112,21 @@ jobs:
         inputs:
           workingDirectory: $(Build.StagingDirectory)/llvm
           cmakeArgs: >-
+            -G Ninja
+            -C $(Build.SourcesDirectory)/cmake/caches/android.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake
-            -G Ninja $(Build.SourcesDirectory)/llvm
-            -DANDROID_ALTERNATE_TOOLCHAIN=$(toolchain.directory)/usr
             -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.cmake
-            -DCMAKE_BUILD_TYPE=Release
+            -DANDROID_ALTERNATE_TOOLCHAIN=$(toolchain.directory)/usr
             -DLLVM_HOST_TRIPLE=${{ parameters.triple }}
+            -DCMAKE_BUILD_TYPE=Release
+            $(Build.SourcesDirectory)/llvm
       - task: CMake@1
         displayName: 'Configure Swift standard library'
         inputs:
           workingDirectory: $(Build.StagingDirectory)/swift-stdlib
           cmakeArgs: >-
             -G Ninja
+            -C $(Build.SourcesDirectory)/cmake/caches/android.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/swift-stdlib-android.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/swift-stdlib-android-${{ parameters.arch }}.cmake
