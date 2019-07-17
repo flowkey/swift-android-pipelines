@@ -114,7 +114,9 @@ jobs:
             -G Ninja
             -C $(Build.SourcesDirectory)/cmake/caches/android.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake
-            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.cmake
+            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.ndk20.cmake
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
             -DANDROID_ALTERNATE_TOOLCHAIN=$(toolchain.directory)/usr
             -DLLVM_HOST_TRIPLE=${{ parameters.triple }}
             -DCMAKE_BUILD_TYPE=Release
@@ -131,7 +133,9 @@ jobs:
             -C $(Build.SourcesDirectory)/cmake/caches/swift-stdlib-android-${{ parameters.arch }}.cmake
             -DCMAKE_BUILD_TYPE=RelWithDebInfo
             -DANDROID_ALTERNATE_TOOLCHAIN=$(toolchain.directory)/usr
-            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.cmake
+            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.ndk20.cmake
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
             -DLLVM_DIR=$(Build.StagingDirectory)/llvm/lib/cmake/llvm
             -DSWIFT_NATIVE_SWIFT_TOOLS_PATH=$(toolchain.directory)/usr/bin
             -DCMAKE_INSTALL_PREFIX=$(install.directory)
@@ -156,7 +160,9 @@ jobs:
             -G Ninja
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}-swift-flags.cmake
-            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.cmake
+            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.ndk20.cmake
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
             -DANDROID_ALTERNATE_TOOLCHAIN=$(toolchain.directory)/usr
             -DSWIFT_ANDROID_SDK=$(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/SDKs/Android.sdk
             -DCMAKE_BUILD_TYPE=RelWithDebInfo
@@ -177,7 +183,9 @@ jobs:
             -G Ninja
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}-swift-flags.cmake
-            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.cmake
+            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.ndk20.cmake
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
             -DSWIFT_ANDROID_SDK=$(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/SDKs/Android.sdk
             -DANDROID_ALTERNATE_TOOLCHAIN=$(toolchain.directory)/usr
             -DCMAKE_BUILD_TYPE=RelWithDebInfo
@@ -207,7 +215,9 @@ jobs:
             -G Ninja
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}-swift-flags.cmake
-            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.cmake
+            -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.ndk20.cmake
+            -DCMAKE_C_COMPILER=clang
+            -DCMAKE_CXX_COMPILER=clang++
             -DSWIFT_ANDROID_SDK=$(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/SDKs/Android.sdk
             -DANDROID_ALTERNATE_TOOLCHAIN=$(toolchain.directory)/usr
             -DCMAKE_BUILD_TYPE=RelWithDebInfo
