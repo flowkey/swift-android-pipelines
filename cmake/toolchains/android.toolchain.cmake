@@ -559,7 +559,7 @@ endif()
 set(ANDROID_CXX_STANDARD_LIBRARIES)
 foreach(library ${ANDROID_STL_STATIC_LIBRARIES})
   list(APPEND ANDROID_CXX_STANDARD_LIBRARIES
-    "${ANDROID_NDK}/sources/cxx-stl/${ANDROID_STL_PREFIX}/libs/${ANDROID_ABI}/lib${library}.a")
+    "${ANDROID_NDK}/sources/cxx-stl/${ANDROID_STL_PREFIX}/libs/${ANDROID_ABI}/lib${library}.a.${ANDROID_PLATFORM_LEVEL}")
 endforeach()
 foreach(library ${ANDROID_STL_SHARED_LIBRARIES})
   list(APPEND ANDROID_CXX_STANDARD_LIBRARIES
