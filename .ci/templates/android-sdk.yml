@@ -41,9 +41,9 @@ jobs:
           cloneOrClean https://github.com/apple/swift-corelibs-foundation swift-corelibs-foundation
           cloneOrClean https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
 
-          # PR26293 - [Driver] Improve Android Toolchain compatibility
-          git -C swift fetch origin pull/26293/head
-          git -C swift cherry-pick FETCH_HEAD
+          # PR508 - Remove Android Platform level for swiftc invocations
+          git -C swift-corelibs-libdispatch fetch origin pull/508/head
+          git -C swift-corelibs-libdispatch cherry-pick FETCH_HEAD
 
         displayName: 'Fetch Sources'
       - task: DownloadBuildArtifacts@0
@@ -165,7 +165,6 @@ jobs:
             -DCMAKE_C_COMPILER=clang
             -DCMAKE_CXX_COMPILER=clang++
             -DANDROID_ALTERNATE_TOOLCHAIN=$(toolchain.directory)/usr
-            -DSWIFT_ANDROID_SDK=$(Build.StagingDirectory)/Library/Developer/Platforms/Android.platform/Developer/SDKs/Android.sdk
             -DCMAKE_BUILD_TYPE=RelWithDebInfo
             -DCMAKE_SWIFT_COMPILER=swiftc
             -DCMAKE_INSTALL_PREFIX=$(install.directory)
