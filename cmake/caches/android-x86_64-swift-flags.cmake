@@ -1,9 +1,11 @@
 set(CMAKE_SWIFT_FLAGS
+      -v
       -resource-dir ${SWIFT_ANDROID_SDK}/usr/lib/swift
       -Xcc --sysroot=${ANDROID_NDK}/sysroot
     CACHE STRING "")
 
 set(CMAKE_SWIFT_LINK_FLAGS
+      -v
       -resource-dir ${SWIFT_ANDROID_SDK}/usr/lib/swift
       -tools-directory ${ANDROID_TOOLCHAIN_ROOT}/bin
       -Xclang-linker --gcc-toolchain=${ANDROID_NDK}/toolchains/${ANDROID_TOOLCHAIN}-4.9/prebuilt/${ANDROID_HOST_TAG}
