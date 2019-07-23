@@ -13,6 +13,6 @@ set(SWIFT_ANDROID_API_LEVEL 21 CACHE STRING "")
 set(SWIFT_ANDROID_NDK_GCC_VERSION 4.9 CACHE STRING "")
 
 # TODO(compnerd) we should fix the lld.exe spelling
-# NOTE: The following values both get unset for aarch64
+# NOTE(ephemer): The following values each get unset for aarch64
 set(SWIFT_ENABLE_LLD_LINKER FALSE CACHE BOOL "")
 set(SWIFT_ENABLE_GOLD_LINKER TRUE CACHE BOOL "")

@@ -175,7 +175,7 @@ jobs:
       - task: CMake@1
         displayName: 'Build libdispatch'
         inputs:
-          cmakeArgs: --build $(Build.StagingDirectory)/libdispatch
+          cmakeArgs: --build $(Build.StagingDirectory)/libdispatch -- --verbose
       - task: CMake@1
         displayName: 'Configure Foundation'
         inputs:
