@@ -41,6 +41,10 @@ jobs:
           cloneOrClean https://github.com/apple/swift-corelibs-foundation swift-corelibs-foundation
           cloneOrClean https://github.com/apple/swift-corelibs-xctest swift-corelibs-xctest
 
+          # PR26293 - [Driver] Improve Android Toolchain compatibility
+          git -C swift fetch origin pull/26293/head
+          git -C swift cherry-pick FETCH_HEAD
+
         displayName: 'Fetch Sources'
       - task: DownloadBuildArtifacts@0
         displayName: 'Install toolchain'
