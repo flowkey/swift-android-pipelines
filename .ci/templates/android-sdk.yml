@@ -154,6 +154,7 @@ jobs:
           workingDirectory: $(Build.StagingDirectory)/libdispatch
           cmakeArgs: >-
             -G Ninja
+            -C $(Build.SourcesDirectory)/cmake/caches/android.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}.cmake
             -C $(Build.SourcesDirectory)/cmake/caches/android-${{ parameters.arch }}-swift-flags.cmake
             -DCMAKE_TOOLCHAIN_FILE=$(Build.SourcesDirectory)/cmake/toolchains/android.toolchain.ndk20.cmake
