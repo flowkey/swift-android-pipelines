@@ -11,7 +11,14 @@ steps:
   - task: CMake@1
     inputs:
       workingDirectory: $(Build.StagingDirectory)/icu
-      cmakeArgs: -C $(Build.SourcesDirectory)/cmake/caches/$(platform)-$(arch).cmake -G Ninja $(Build.SourcesDirectory)/icu/icu4c -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_INSTALL_PREFIX=$(install.directory)/usr -DBUILD_SHARED_LIBS=YES -DBUILD_TOOLS=$(icu.build_tools)
+      cmakeArgs: >-
+        -G Ninja
+        -C $(Build.SourcesDirectory)/cmake/caches/$(platform)-$(arch).cmake
+        -DCMAKE_BUILD_TYPE=MinSizeRel
+        -DCMAKE_INSTALL_PREFIX=$(install.directory)/usr
+        -DBUILD_SHARED_LIBS=YES
+        -DBUILD_TOOLS=$(icu.build_tools)
+        $(Build.SourcesDirectory)/icu/icu4c
     displayName: 'Configure ICU'
   - task: CMake@1
     inputs:
